@@ -29,7 +29,7 @@ function App() {
                 <Footer titleForFooter={'New Footer'}/>
                 {/*<FilteredMoneyWithButton coins={money}/>*/}
                 {/*<Sp2/>*/}
-                <AppTest/>
+                {/*<AppTest/>*/}
             </div>
         </div>
     );
