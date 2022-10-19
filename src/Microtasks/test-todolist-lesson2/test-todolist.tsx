@@ -1,5 +1,3 @@
-
-
 type TaskType = {
     id: number
     title: string
@@ -9,9 +7,13 @@ type TaskType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
+    deleteTask: (taskId:number)=>void
+    change: (value:'all'|'active'|'completed')=>void
 }
 
 export function TodolistTest(props: PropsType) {
+
+
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -19,14 +21,32 @@ export function TodolistTest(props: PropsType) {
             <button>+</button>
         </div>
         <ul>
-            <li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>
-            <li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>
-            <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>
-        </ul>
-        <div>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
-        </div>
-    </div>
-}
+            {props.tasks.map((el)=>{
+            return(
+                <li key={el.id}>
+                    <input type="checkbox" checked={el.isDone}/>
+                    <span>{el.title}</span>
+                    <button onClick={()=>{props.deleteTask(el.id)}}>✖</button>
+                </li>
+
+            )})}
+            </ul>
+                <div>
+                    <button onClick={
+                        ()=>{props.change('all')}
+                    }>
+                        All
+                        </button>
+                    <button onClick={
+                        ()=>{props.change('active')}
+                    }>
+                        active
+                    </button>
+                    <button onClick={
+                        ()=>{props.change('completed')}
+                    }>
+                        completed
+                    </button>
+                </div>
+            </div>
+            }

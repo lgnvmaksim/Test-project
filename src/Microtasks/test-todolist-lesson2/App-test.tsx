@@ -1,22 +1,39 @@
 import {TodolistTest} from "./test-todolist";
+import React, {useState} from 'react'
 
-export const AppTest=()=> {
+export const AppTest = () => {
 
-    const tasks1 = [
-        { id: 1, title: "HTML&CSS", isDone: true },
-        { id: 2, title: "JS", isDone: true },
-        { id: 3, title: "ReactJS", isDone: false }
-    ]
-    const tasks2 = [
-        { id: 1, title: "Hello world", isDone: true },
-        { id: 2, title: "I am Happy", isDone: false },
-        { id: 3, title: "Yo", isDone: false }
-    ]
+    let [tasks1, setTasks1] = useState ([
+        {id: 1, title: "HTML&CSS", isDone: true},
+        {id: 2, title: "JS", isDone: true},
+        {id: 3, title: "ReactJS", isDone: false}
+    ])
+
+    const removeTask = (id: number) => {
+        let filteredTasks = tasks1.filter(el => el.id!== id)
+        setTasks1(filteredTasks)
+    }
+
+    let [filter, setFilter] = useState<'all'|'active'|'completed'>('all')
+
+    let tasksForTodoList = tasks1  //хранилка отфильрованных тасок
+    if (filter==='active') {
+        tasksForTodoList = tasks1.filter(el=>el.isDone===false)
+    }
+    if (filter==='completed') {
+        tasksForTodoList = tasks1.filter(el=>el.isDone===true)
+    }
+    const changeFilter =(value:'all'|'active'|'completed') =>{
+        setFilter(value)
+    }
 
     return (
         <div>
-            <TodolistTest title="What to learn" tasks={tasks1} />
-            <TodolistTest title="Songs" tasks={tasks2} />
+            <TodolistTest title="What to learn"
+                          tasks={tasksForTodoList}
+                          deleteTask={removeTask}
+                          change ={changeFilter}
+            />
         </div>
     );
 }
