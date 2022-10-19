@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './App.css';
 import {Todolist} from "./Todolists-for-sp/Todolist-for-SP2";
 
 
@@ -35,6 +34,7 @@ export function Sp2() {
         {id: 4, title: "Rest API", isDone: false},
         {id: 5, title: "GraphQL", isDone: false},
     ]);
+    
 
     function removeTask(id: number) {
         let filteredTasks = tasks.filter(t => t.id != id);

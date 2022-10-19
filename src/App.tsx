@@ -4,6 +4,8 @@ import {Body} from "./Microtasks/site/Body";
 import React, {useState} from "react";
 import {FilteredMoneyWithButton} from "./Microtasks/button/Components/FilteredMoneyWithButton";
 import {Footer} from "./Microtasks/site/Footer";
+import {Sp2} from "./homework-1-week/Sp-2";
+import {AppTest} from "./Microtasks/test-todolist-lesson2/App-test";
 
 
 
@@ -26,6 +28,8 @@ function App() {
                 <Body titleForBody={'New Body'}/>
                 <Footer titleForFooter={'New Footer'}/>
                 {/*<FilteredMoneyWithButton coins={money}/>*/}
+                {/*<Sp2/>*/}
+                <AppTest/>
             </div>
         </div>
     );
