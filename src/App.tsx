@@ -6,30 +6,43 @@ import {FilteredMoneyWithButton} from "./Microtasks/button/Components/FilteredMo
 import {Footer} from "./Microtasks/site/Footer";
 import {Sp2} from "./homework-1-week/Sp-2";
 import {AppTest} from "./Microtasks/test-todolist-lesson2/App-test";
-
+import {FullInput} from "./Microtasks/Input/FullInput";
+import {Input} from "./Microtasks/Input/Input";
+import {Button} from "./Microtasks/Input/Button";
 
 
 function App() {
-    // const [money, setMoney] = useState([
-    //     {banknote: 'dollar', nominal: 100, number: 'a1234567890'},
-    //     {banknote: 'dollar', nominal: 50, number: 'z1234567890'},
-    //     {banknote: 'ruble', nominal: 100, number: 'w1234567890'},
-    //     {banknote: 'dollar', nominal: 100, number: 'e1234567890'},
-    //     {banknote: 'dollar', nominal: 50, number: 'c1234567890'},
-    //     {banknote: 'ruble', nominal: 100, number: 'r1234567890'},
-    //     {banknote: 'dollar', nominal: 50, number: 'x1234567890'},
-    //     {banknote: 'ruble', nominal: 50, number: 'v1234567890'},
-    // ])
+
+    const [message, setMessage] = useState([
+            {message: 'message1'},
+            {message: 'message2'},
+            {message: 'message3'},
+            {message: 'message4'},
+            {message: 'message5'}
+        ]
+    )
+    const addMessage = (title:string) => {
+        let newMessage = {message: title}
+        setMessage([newMessage, ...message])
+    }
+
+    let [title, setTitle] = useState('')
+
+    const callBackButtonHandler = ()=>{
+        addMessage(title)
+        setTitle('')
+    }
 
     return (
-        <div>
+        <div className={'App'}>
             <div>
-                <Header title={'New Header'}/>
-                <Body titleForBody={'New Body'}/>
-                <Footer titleForFooter={'New Footer'}/>
-                {/*<FilteredMoneyWithButton coins={money}/>*/}
-                {/*<Sp2/>*/}
-                {/*<AppTest/>*/}
+                <Input setTitle={setTitle} title={title}/>
+               <Button name={'+'} callBack={callBackButtonHandler} />
+                {message.map((el, index) => {
+                    return (
+                        <div key={index}>{el.message}</div>
+                    )
+                })}
             </div>
         </div>
     );
