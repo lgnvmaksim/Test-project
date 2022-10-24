@@ -1,11 +1,8 @@
 import './App.css';
 import React, {useState} from "react";
-import {Input} from "./Microtasks/Input/Input";
-import {Button} from "./Microtasks/Input/Button";
 
 
-function App() {
-
+export const App=()=> {
     const [message, setMessage] = useState([
             {message: 'message1'},
             {message: 'message2'},
@@ -14,31 +11,17 @@ function App() {
             {message: 'message5'}
         ]
     )
-    const addMessage = (title:string) => {
-        let newMessage = {message: title}
-        setMessage([newMessage, ...message])
-    }
-
-    let [title, setTitle] = useState('')
-
-    const callBackButtonHandler = ()=>{
-        addMessage(title)
-        setTitle('')
-    }
-
     return (
-        <div className={'App'}>
+        <div className="App">
             <div>
-                <Input setTitle={setTitle} title={title}/>
-               <Button name={'+'} callBack={callBackButtonHandler} />
-                {message.map((el, index) => {
-                    return (
-                        <div key={index}>{el.message}</div>
-                    )
-                })}
+                <input />
+                <button>+</button>
             </div>
+            {message.map((el, index) => {
+                return (
+                    <div key={index}>{el.message}</div>
+                )
+            })}
         </div>
     );
 }
-
-export default App;
